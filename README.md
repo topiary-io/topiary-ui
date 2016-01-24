@@ -30,3 +30,4 @@ There is also a very simple static server available for use.
 * `npm run build` - build js for production
 * `npm run watch` - automatically build js on file changes for development
 * `npm start` - start a static server
+* `npm run dev` - runs both `watch` and `start`
