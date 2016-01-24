@@ -1,8 +1,8 @@
 # Malatium 
 
-A custom Mithril + Redux starter, based on:
-https://github.com/mijime/mithril-redux-starter-hmr
-https://github.com/colinbate/mithril-redux
+A custom Mithril + Redux starter, based on:  
+* https://github.com/mijime/mithril-redux-starter-hmr
+* https://github.com/colinbate/mithril-redux
 
 Hopefully it will evolve to include any helpers I find useful in Mithril development.
 A gulp + webpack version will probably follow.
