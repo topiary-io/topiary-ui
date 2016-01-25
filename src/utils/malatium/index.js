@@ -87,12 +87,13 @@ export const redrawMiddleware = (store) => (next) => (action) => {
 
 // routing
 const special = ["$container", "$alias", "$default"]
+const trimRightSlash = (str) => str.replace(/\/$/, "")
 
 export function flattenRoutes (routes, obj = {}, prefix = "", ...parents) {
   if (isFunction(routes)) routes = routes()
 
   if (isComponent(routes)) {
-    obj[prefix] = nestComponents(routes, ...parents)
+    obj[trimRightSlash(prefix)] = nestComponents(routes, ...parents)
     return routes 
   }
 
@@ -109,7 +110,7 @@ export function flattenRoutes (routes, obj = {}, prefix = "", ...parents) {
 
     if (isFunction(value)) return value = value()
     if (isArray(value)) throw new Error("not set up to handle arrays")
-    if (isComponent(value)) return (obj[prefix + key] = nestComponents(value, ...parents))
+    if (isComponent(value)) return (obj[trimRightSlash(prefix + key)] = nestComponents(value, ...parents))
     if (isObject(value)) return flattenRoutes(value, obj, prefix + key, ...parents)
     throw new Error("type not handled")
   })

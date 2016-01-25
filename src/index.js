@@ -10,17 +10,14 @@ initModule(module)
 Malatium.init(m, configureStore())
 
 const routes = {
-  "/": App,
-  "/a": {
-    "$container": App,
-    "/b": App,
-    "/c": {
-      "$container": {view: (_,__,children) => m("div", "foo", children)},
-      "/d": App,
-      "$default": {view: () => m("strong", "bar")}
-    }
+  "$container": App,
+  "/": {view:()=>m("p", "home")},
+  "/post": {
+    "$container": {view:(ctrl, props, children)=>m("strong", children)},
+    "/": {view:()=>m("p", "post index")},
+    "$default": {view:()=>m("p", "catch-all post container")}
   },
-  "$default": {view:() => m("div", "uh oh, route not found")}
+  "$default": {view:()=>m("p", "404: page not found")}
 }
 
 defn(() => Malatium.route(document.body, "/", routes, "hash"))()
