@@ -1,9 +1,4 @@
-export const identity = x => x 
-
-function lazyInit(Component) {
-  return typeof Component === "function" ? new Component() : Component
-}
-
+// Malatium
 class Provider {
   init (m, store, Component) {
     if (!m || !store || !store.getState) throw new Error("Mithril and Redux store are required")
@@ -15,9 +10,37 @@ class Provider {
 }
 
 const Malatium = new Provider
-export default Malatium
 
-// connect helpers
+// helper functions
+export function isArray (arr) {
+  return Object.prototype.toString.call(arr) === "[object Array]"
+}
+
+export function isFunction (fn) {
+  return typeof fn === "function"
+}
+
+export function isObject (obj) {
+  return obj === Object(obj)
+}
+
+export function isComponent (component) {
+  return isObject(component) && isFunction(component.view) 
+}
+
+export function nestComponents (...components) {
+  return components.reduce((out, component, idx) => {
+    if (out === false) return Malatium.m.component(component)
+    return Malatium.m.component(component, {}, out)
+  }, false)
+}
+
+export const identity = x => x 
+
+export const lazyInit = function (Component) {
+  return typeof Component === "function" ? new Component() : Component
+}
+
 function bindActions (actions, dispatch) {
   if (typeof actions === "function") return actions(dispatch)
   if (typeof actions === "object") return Object.keys(actions).reduce(function (out, key, index) {
@@ -61,3 +84,44 @@ export const redrawMiddleware = (store) => (next) => (action) => {
     Malatium.m.redraw()
   }
 }
+
+// routing
+const special = ["$container", "$alias", "$default"]
+
+export function flattenRoutes (routes, obj = {}, prefix = "", ...parents) {
+  if (isFunction(routes)) routes = routes()
+
+  if (isComponent(routes)) {
+    obj[prefix] = nestComponents(routes, ...parents)
+    return routes 
+  }
+
+  if (!isObject(routes)) throw new Error("routes needs to be an object, or function that returns an object")
+
+  if (routes.hasOwnProperty("$container")) {
+    const $container = isFunction(routes.$container) ? routes.$container() : routes.$container
+    parents = [$container, ...parents]
+  }
+
+  Object.keys(routes).forEach((key, idx) => {
+    if (special.indexOf(key) > -1) return
+    let value = routes[key]
+
+    if (isFunction(value)) return value = value()
+    if (isArray(value)) throw new Error("not set up to handle arrays")
+    if (isComponent(value)) return (obj[prefix + key] = nestComponents(value, ...parents))
+    if (isObject(value)) return flattenRoutes(value, obj, prefix + key, ...parents)
+    throw new Error("type not handled")
+  })
+
+  if (routes.hasOwnProperty("$default")) flattenRoutes(routes.$default, obj, prefix + "/:stub...", ...parents)
+
+  return obj
+}
+
+Malatium.route = (DOMElement, defaultRoute, routes, mode) => {
+  if (mode) Malatium.m.route.mode = mode
+  return Malatium.m.route(DOMElement, defaultRoute, flattenRoutes(routes))
+}
+
+export default Malatium

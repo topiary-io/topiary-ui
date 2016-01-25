@@ -5,9 +5,34 @@ A custom Mithril + Redux starter, based on:
 * https://github.com/colinbate/mithril-redux
 
 Hopefully it will evolve to include any helpers I find useful in Mithril development.
-A gulp + webpack version will probably follow.
 
-# using modules
+## Malatium.route 
+
+Malatium's `route` function allows you to pass in nested routes which are easy to reason about.
+It flattens the routes, and passes them on to `mithril.route`. It also allows `mode` to be sent
+in as an optional 4th parameter.  
+
+It is a work in progress.
+
+```js
+const routes = {
+  "$container": HeaderFooter,
+  "/": HomePage,
+  "/post": {
+    "$container": Post,
+    "/:id": Basic,
+    "/promo/:id": Promo,
+    "$default": StoryNotFound
+  },
+  "$default": PageNotFound
+}
+
+Malatium.route(document.body, "/", routes, "hash")
+
+```
+In above, `/post/:id` will render `<HeaderFooter><Post><Basic /></Post></HeaderFooter>`
+
+## using modules
 
 * [mithril](https://github.com/lhorie/mithril.js)
 * [redux](https://github.com/rackt/redux)
@@ -15,7 +40,7 @@ A gulp + webpack version will probably follow.
 * [browserify](http://browserify.org)/[watchify](https://npmjs.com/package/watchify)
 * [ud](https://github.com/AgentME/ud)
 
-# quick start
+## quick start
 
 ```
 $ npm install
@@ -25,7 +50,7 @@ $ open index.html
 
 There is also a very simple static server available for use.
 
-# commands
+## commands
 
 * `npm run build` - build js for production
 * `npm run watch` - automatically build js on file changes for development
