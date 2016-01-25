@@ -1,41 +1,18 @@
-# Malatium 
+# mithril-redux-malatium 
 
 A custom Mithril + Redux starter, based on:  
 * https://github.com/mijime/mithril-redux-starter-hmr
 * https://github.com/colinbate/mithril-redux
 
+Malatium includes the expected `connect`/`Provider` to interface with redux, but also has other utilities, like `Malatium.route`. 
+
 Hopefully it will evolve to include any helpers I find useful in Mithril development.
-
-## Malatium.route 
-
-Malatium's `route` function allows you to pass in nested routes which are easy to reason about.
-It flattens the routes, and passes them on to `mithril.route`. It also allows `mode` to be sent
-in as an optional 4th parameter.  
-
-It is a work in progress.
-
-```js
-const routes = {
-  "$container": HeaderFooter,
-  "/": HomePage,
-  "/post": {
-    "$container": Post,
-    "/:id": Basic,
-    "/promo/:id": Promo,
-    "$default": StoryNotFound
-  },
-  "$default": PageNotFound
-}
-
-Malatium.route(document.body, "/", routes, "hash")
-
-```
-In above, `/post/:id` will render `<HeaderFooter><Post><Basic /></Post></HeaderFooter>`
 
 ## using modules
 
 * [mithril](https://github.com/lhorie/mithril.js)
 * [redux](https://github.com/rackt/redux)
+* [malatium](https://github.com/schtauffen/malatium)
 * [browserify-hmr](https://npmjs.com/package/browserify-hmr)
 * [browserify](http://browserify.org)/[watchify](https://npmjs.com/package/watchify)
 * [ud](https://github.com/AgentME/ud)

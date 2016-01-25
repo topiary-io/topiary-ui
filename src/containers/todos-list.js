@@ -1,5 +1,5 @@
 import m from "mithril"
-import { connect } from "../utils/malatium"
+import { connect } from "malatium"
 import { VisibilityFilters, addTodo, removeTodo, toggleTodo } from "../actions"
 
 import Todo from "./todo"

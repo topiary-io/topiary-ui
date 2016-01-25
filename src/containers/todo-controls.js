@@ -1,5 +1,5 @@
 import m from "mithril"
-import { identity, connect } from "../utils/malatium" 
+import { identity, connect } from "malatium" 
 import { VisibilityFilters, setVisibilityFilter, addTodo } from "../actions"
 
 // TODO : nav link vs "button" link?

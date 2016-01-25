@@ -1,6 +1,6 @@
 import m from "mithril"
 
-import Malatium from "./utils/malatium"
+import Malatium from "malatium"
 import { initModule, defn } from "./utils/redux-ud"
 
 import App from "./containers/app"
