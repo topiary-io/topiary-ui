@@ -1,9 +1,9 @@
 import m from "mithril"
-import NavLink from "./nav-link"
+import NavLink from "../nav-link"
 
 const navItems = {
-  "/": "Home",
-  "/post": "Posts"
+  "/admin": "Home",
+  "/admin/post": "Posts"
 }
 
 function navLinks (links) {

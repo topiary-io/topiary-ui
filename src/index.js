@@ -15,6 +15,6 @@ initModule(module)
 defn(() => 
   Malatium
     .init(m, configureStore())
-    .route(document.body, "/", routes, "hash")
+    .route(document.body, "/admin", routes, "pathname")
 )()
 
