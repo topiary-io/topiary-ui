@@ -4,31 +4,37 @@ import { changeLocation } from "../actions"
 
 class NavLink {
   controller({
+    key,
     href,
     location,
     changeLocation
   }) {
-    const onclick = changeLocation(href) 
     const active = href === location
-    return active ?
-      {
+    if (active) {
+      return {
         tag: "span",
-        props: {},
-        active
-      } :
-      {
+        props: {
+          key
+        },
+        decorator: "&middot;"
+      }
+    } else {
+      const onclick = changeLocation(href) 
+
+      return {
         tag: "a",
         props: {
-          onclick,
+          key,
           href,
-          config: m.route,
-          active
-        }
+          onclick,
+          config: m.route
+        },
+        decorator: ""
       }
+    }
   }
-  view ({ tag, props, active }, _, children) {
-    children = active ? "&middot; " + children : children
-    return m(tag, props, m.trust(children))
+  view ({ tag, props, decorator }, _, children) {
+    return m(tag, props, m.trust(decorator + children))
   }
 }
 

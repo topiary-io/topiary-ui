@@ -15,7 +15,7 @@ class TodoControls {
     const { addTodo, text } = props
     return {
       ...props,
-      onclick: () => {
+      onclick: (e) => {
         addTodo(text())()
         text("")
       }
@@ -32,7 +32,10 @@ class TodoControls {
       m("div",
         m("strong", "Filter: "),
         Object.keys(VisibilityFilters).map((key, idx) => {
-          const onclick = setVisibilityFilter(VisibilityFilters[key])
+          const onclick = (e) => {
+            e.preventDefault()
+            setVisibilityFilter(VisibilityFilters[key])()
+          }
           return m.component(Link, { active: (VisibilityFilters[key] === visibilityFilter), onclick }, FilterLabels[key])
         })
       )
