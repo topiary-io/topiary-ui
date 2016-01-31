@@ -1,15 +1,12 @@
 import m from "mithril"
 import { connect } from "malatium"
-import { changeLocation } from "../actions"
 
 class NavLink {
   controller({
     key,
-    href,
-    location,
-    changeLocation
+    href
   }) {
-    const active = href === location
+    const active = href === m.route()
     if (active) {
       return {
         tag: "span",
@@ -19,14 +16,11 @@ class NavLink {
         decorator: "&middot;"
       }
     } else {
-      const onclick = changeLocation(href) 
-
       return {
         tag: "a",
         props: {
           key,
           href,
-          onclick,
           config: m.route
         },
         decorator: ""
@@ -38,7 +32,4 @@ class NavLink {
   }
 }
 
-export default connect(
-  ({ location }) => ({location}),
-  { changeLocation }
-)(NavLink)
+export default new NavLink
