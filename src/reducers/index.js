@@ -1,5 +1,4 @@
-import { combineReducers } from "redux"
-import { VisibilityFilters, SET_VISIBILITY_FILTER, ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from "../actions"
+import { VisibilityFilters, SET_VISIBILITY_FILTER, ADD_TODO, REMOVE_TODO, TOGGLE_TODO, CHANGE_LOCATION } from "../actions"
 
 /* TODOS have form:
  *  {
@@ -8,6 +7,13 @@ import { VisibilityFilters, SET_VISIBILITY_FILTER, ADD_TODO, REMOVE_TODO, TOGGLE
  *    active: <Boolean>
  *  }
  */
+
+export function location (state = "/", action) {
+  switch (action.type) {
+    case CHANGE_LOCATION: return action.location
+  }
+  return state
+}
 
 export function visibilityFilter (state = VisibilityFilters.SHOW_ALL, action) {
   switch (action.type) {
