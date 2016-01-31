@@ -13,19 +13,22 @@ class NavLink {
     return active ?
       {
         tag: "span",
-        props: {}
+        props: {},
+        active
       } :
       {
         tag: "a",
         props: {
           onclick,
           href,
-          config: m.route
+          config: m.route,
+          active
         }
       }
   }
-  view ({ tag, props }, _, children) {
-    return m(tag, props, children)
+  view ({ tag, props, active }, _, children) {
+    children = active ? "&middot; " + children : children
+    return m(tag, props, m.trust(children))
   }
 }
 
