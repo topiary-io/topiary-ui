@@ -1,6 +1,6 @@
 {
-  "name": "mithril-redux-malatium",
-  "version": "0.0.4",
+  "name": "admin-prework",
+  "version": "0.0.1",
   "description": "",
   "main": "server.js",
   "scripts": {

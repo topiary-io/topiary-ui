@@ -1,6 +1,8 @@
 import m from "mithril"
 import Malatium from "malatium"
 
+window.m = m
+
 // hot module reloading
 import { initModule, defn } from "./utils/redux-ud"
 

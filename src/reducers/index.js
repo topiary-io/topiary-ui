@@ -1,5 +1,5 @@
 import { combineReducers } from "redux"
-import { VisibilityFilters, SET_VISIBILITY_FILTER, ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from "./actions"
+import { VisibilityFilters, SET_VISIBILITY_FILTER, ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from "../actions"
 
 /* TODOS have form:
  *  {
