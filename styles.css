@@ -32,6 +32,7 @@ nav {
   overflow-y: auto;
   background-color: #fafafa;
   border-right: 0.1rem solid #e5e5e5;
+  padding-bottom: 3rem;
 }
 nav h2 {
   color: #777;

@@ -45,18 +45,21 @@ const settingsItems = {
 }
 
 class SideBar {
-  view () {
-    return m("nav",
-      m("h2", "Content"),
-        m("ul", navItems(contentItems)
-      ),
-      m("h2", "Theme"),
-        m("ul", navItems(themeItems)
-      ),
-      m("h2", "Settings"),
-        m("ul", navItems(settingsItems)
+  view (ctrl, props, children) {
+    return m("div",
+        m("nav",
+          m("h2", "Content"),
+            m("ul", navItems(contentItems)
+          ),
+          m("h2", "Theme"),
+            m("ul", navItems(themeItems)
+          ),
+          m("h2", "Settings"),
+            m("ul", navItems(settingsItems)
+          )
+        ),
+        m("main", children)
       )
-    )
   }
 }
 

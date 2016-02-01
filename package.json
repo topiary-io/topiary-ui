@@ -8,7 +8,8 @@
     "build": "browserify -t [ babelify --presets es2015 --plugins [mjsx transform-object-rest-spread] ] src/index.js -o bundle.js",
     "styles": "stylus -u jeet -w src/styles/main.styl -o styles.css",
     "watch": "watchify -vd -t [ babelify --presets es2015 --plugins [mjsx transform-object-rest-spread] ] -p browserify-hmr src/index.js -o bundle.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "min":"uglifyjs bundle.js --screw-ie8 -c dead_code -o bundle.min.js"
   },
   "keywords": [],
   "author": "",
