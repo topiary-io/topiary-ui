@@ -12,7 +12,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Apache 2.0",
   "devDependencies": {
     "babel-core": "^6.4.5",
     "babel-plugin-mjsx": "^4.0.0",
