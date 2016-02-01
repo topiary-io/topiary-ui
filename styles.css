@@ -138,10 +138,13 @@ nav ul a:hover {
 nav ul span {
   background-color: #eee;
 }
+.push-right {
+  padding-left: 25rem;
+}
 main {
-  padding: 0 1.5rem 0 26.5rem;
+  padding: 0 1.5rem;
   margin-bottom: 3rem;
 }
 footer {
-  padding: 0 1.5rem 0 26.5rem;
+  padding: 0 1.5rem;
 }

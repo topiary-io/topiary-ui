@@ -67,23 +67,20 @@ const testItems = {
 
 class SideBar {
   view (ctrl, props, children) {
-    return m("div",
-        m("nav",
-          m("h2", "Content"),
-            m("ul", navItems(contentItems)
-          ),
-          m("h2", "Theme"),
-            m("ul", navItems(themeItems)
-          ),
-          m("h2", "Settings"),
-            m("ul", navItems(settingsItems)
-          ),
-          m("h2", "Test"),
-            m("ul", navItems(testItems)
-          )
-        ),
-        m("main", children)
+    return m("nav",
+      m("h2", "Content"),
+        m("ul", navItems(contentItems)
+      ),
+      m("h2", "Theme"),
+        m("ul", navItems(themeItems)
+      ),
+      m("h2", "Settings"),
+        m("ul", navItems(settingsItems)
+      ),
+      m("h2", "Test"),
+        m("ul", navItems(testItems)
       )
+    )  
   }
 }
 

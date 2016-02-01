@@ -6,8 +6,7 @@ class App {
   view (ctrl, props, children) {
     return m("#app",
         Header,
-        children,
-        Footer
+        children
     )
   }
 }
