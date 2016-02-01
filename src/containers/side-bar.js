@@ -26,6 +26,23 @@ function navItems (items) {
   )
 }
 
+/*
+ *  TODO : implement into reducers... / service
+ *  & flatten ?
+ *  
+ *  sideNavLinks: [
+ *    {
+ *      groupName: "Content",
+ *      links: [
+ *        {
+ *          linkName: "Posts",
+ *          linkUri: "/admin/content/posts"
+ *        }
+ *      ]
+ *    }
+ *  ]
+ */
+
 const contentItems = {
   "/admin/content/posts" : "Posts",
   "/admin/content/pages" : "Pages",
@@ -44,6 +61,10 @@ const settingsItems = {
   "/admin/users" : "Users"
 }
 
+const testItems = {
+  "/admin/loader": "Test Loader"
+}
+
 class SideBar {
   view (ctrl, props, children) {
     return m("div",
@@ -56,6 +77,9 @@ class SideBar {
           ),
           m("h2", "Settings"),
             m("ul", navItems(settingsItems)
+          ),
+          m("h2", "Test"),
+            m("ul", navItems(testItems)
           )
         ),
         m("main", children)
