@@ -1,7 +1,7 @@
 {
   "name": "topiary-ui",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.2",
+  "description": "Development repo for the topiary-io admin UI",
   "main": "server.js",
   "scripts": {
     "dev": "npm start & npm run watch & npm run styles && fg",
