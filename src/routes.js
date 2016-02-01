@@ -4,12 +4,7 @@ import App from "./containers/app"
 const routes = {
   "$container": App,
   "/admin": { // the app is only served at /admin/*
-    "/": {view:()=>m("p", "home")},
-    "/post": {
-      "$container": {view:(ctrl, props, children)=>m("strong", children)},
-      "/": {view:()=>m("p", "post index")},
-      "$default": {view:()=>m("p", "catch-all post container")}
-    },
+    "/": {view: ()=>m("p", "home")},
     "$default": {view:()=>m("p", "404: page not found")}
   }
 }

@@ -1,5 +1,4 @@
 import m from "mithril"
-import NavLink from "../nav-link"
 
 class Header {
   view () {
