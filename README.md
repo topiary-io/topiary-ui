@@ -1,14 +1,14 @@
-# topiary FE repo
+# topiary UI repo
 
-Topiary's FE repo is used to develop the js and css for the topiary admin interface.
+Topiary's ui repo is used to develop the js and css for the topiary admin interface.
 
 ## installation
 
 Requires: git, node, npm
 
 ```js
-git clone https://github.com/topiary-io/topiary-fe topiary-fe  
-cd topiary-fe/  
+git clone https://github.com/topiary-io/topiary-ui topiary-ui 
+cd topiary-ui/  
 npm install
 ```
 
