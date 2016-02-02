@@ -1,7 +1,9 @@
 var express = require("express")
+var compress = require("compression")
 
 var app = express()
 
+app.use(compress())
 app.use(express.static("./"))
 
 app.use("*", (req, res, next) => {
