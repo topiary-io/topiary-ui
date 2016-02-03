@@ -1,4 +1,5 @@
 import m from "mithril"
+import { connect } from "malatium"
 
 class NavLink {
   controller({ href }) {
@@ -21,67 +22,27 @@ class NavLink {
 const navLink = new NavLink
 
 function navItems (items) {
-  return Object.keys(items).map((href, key) =>
-    m.component(navLink, { href, key }, items[href])
-  )
-}
-
-/*
- *  TODO : implement into reducers... / service
- *  & flatten ?
- *  
- *  sideNavLinks: [
- *    {
- *      groupName: "Content",
- *      links: [
- *        {
- *          linkName: "Posts",
- *          linkUri: "/admin/content/posts"
- *        }
- *      ]
- *    }
- *  ]
- */
-
-const contentItems = {
-  "/admin/content/posts" : "Posts",
-  "/admin/content/pages" : "Pages",
-  "/admin/static/media" : "Media"
-}
-
-const themeItems = {
-  "/admin/layouts" : "Layouts",
-  "/admin/static" : "Assets",
-  "/admin/data" : "Data"
-}
-
-const settingsItems = {
-  "/admin/edit/config.toml" : "Configuration",
-  "/admin/archetypes" : "Archetypes",
-  "/admin/users" : "Users"
-}
-
-const testItems = {
-  "/admin/loader": "Test Loader"
+  return items.map((link, key) => {
+    const href = link.uri
+    return m.component(navLink, { href, key }, link.text)
+  })
 }
 
 class SideBar {
-  view (ctrl, props, children) {
+  view (ctrl, { sideBar }, children) {
     return m("nav",
-      m("h2", "Content"),
-        m("ul", navItems(contentItems)
-      ),
-      m("h2", "Theme"),
-        m("ul", navItems(themeItems)
-      ),
-      m("h2", "Settings"),
-        m("ul", navItems(settingsItems)
-      ),
-      m("h2", "Test"),
-        m("ul", navItems(testItems)
-      )
-    )  
+      // break menu out into own component, sidebar retains being the
+      // "connect" component / optionally: connect 
+      // sidebarlayout instead 
+      sideBar.map((group, key) =>
+        [ m("h2", { key }, group.name),
+          m("ul", navItems(group.options))]))  
   }
 }
 
-export default new SideBar 
+// where should logic to determine which elements display live?
+const initial = [{"name":"Content","options":[{"text":"Posts","uri":"/admin/content/posts"},{"text":"Pages","uri":"/admin/content/pages"},{"text":"Media","uri":"/admin/static/media"}]},{"name":"Theme","options":[{"text":"Layouts","uri":"/admin/layouts"},{"text":"Assets","uri":"/admin/static"},{"text":"Data","uri":"/admin/data"}]},{"name":"Theme","options":[{"text":"Configuration","uri":"/admin/edit/config.toml"},{"text":"Archetypes","uri":"/admin/archetypes"},{"text":"Users","uri":"/admin/users"}]},{"name":"Test","options":[{"text":"Loader","uri":"/admin/loader"}]}]
+
+export default connect(
+  ({ sideBar }) => ({ sideBar: initial })
+)(SideBar)
