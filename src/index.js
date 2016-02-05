@@ -1,20 +1,20 @@
 import m from "mithril"
+import { createStore, combineReducers } from "redux"
 import Malatium from "malatium"
-
-window.m = m
-
-// hot module reloading
-import { initModule, defn } from "./utils/redux-ud"
-
-// our redux store and routes
-import { configureStore } from "./store"
 import routes from "./routes"
+import * as reducers from "./reducers"
+import { setSideBar } from "./actions"
 
-initModule(module)
+const store = createStore(combineReducers(reducers))
 
-defn(() => 
+// get initial app state, and then render ui
+m.request({
+  method: "GET",
+  url: "http://localhost:3000/admin/api/side-bar"
+}).then(function (sideBar) {
+  store.dispatch(setSideBar(sideBar))
   Malatium
-    .init(m, configureStore())
+    .init(m, store)
     .route(document.body, "/admin", routes, "pathname")
-)()
+})
 
