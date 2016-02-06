@@ -1,6 +1,7 @@
 import m from "mithril"
 import { createStore, combineReducers } from "redux"
 import Malatium from "malatium"
+
 import routes from "./routes"
 import * as reducers from "./reducers"
 import { setSideBar } from "./actions"
