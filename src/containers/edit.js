@@ -11,7 +11,7 @@ function config(el, isInit) {
   if (!isInit) {
     return m.request({
         method: "GET",
-        url: "http://localhost:3000/admin/api/read/" + filename()
+        url: "http://localhost:3000"+ADMIN_ROOT+"api/read/" + filename()
       })
       .then(function (res) {
         content(res.content)
@@ -23,7 +23,7 @@ function save(e) {
   e.preventDefault()
   m.request({
       method: "POST",
-      url: "http://localhost:3000/admin/api/write/",
+      url: "http://localhost:3000"+ADMIN_ROOT+"api/write/",
       data: {
         filename: filename(),
         content: content()

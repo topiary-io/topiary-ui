@@ -8,7 +8,7 @@ app.use(express.static("./"))
 
 app.use("*", (req, res, next) => {
   res.send(
-    "<!doctype html><meta charset='utf-8'><title>Mithril-Redux</title><link rel='stylesheet' href='/styles.css'><script defer src='/bundle.js'></script><div class='loader'>Loading...</div>"
+    "<!doctype html><meta charset='utf-8'><title>Mithril-Redux</title><link rel='stylesheet' href='/styles.css'><script>window.ADMIN_ROOT=\"/mithril-ui/\"</script><script defer src='/bundle.js'></script><div class='loader'>Loading...</div>"
   )
 })
 

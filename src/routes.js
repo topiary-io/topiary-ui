@@ -8,16 +8,21 @@ const Login = {
   view:  () => m("p", "Login... (TODO)")
 }
 
+const adminLocation = ADMIN_ROOT.replace(/\/+$/,"")
+
+const admin = {}
+admin[adminLocation+"/login"] = Login
+admin[adminLocation] = {
+  "$container": SideBarLayout,
+  "/edit/:filename": Edit,
+  "/loader": Loader,
+  "/": {view: ()=>m("p", "home")},
+  "$default": {view:()=>m("p", "404: page not found")}
+}
+
 const routes = {
   "$container": App,
-  "/admin/login": Login,
-  "/admin": { // the app is only served at /admin/*
-    "$container": SideBarLayout,
-    "/edit/:filename": Edit,
-    "/loader": Loader,
-    "/": {view: ()=>m("p", "home")},
-    "$default": {view:()=>m("p", "404: page not found")}
-  }
+  ...admin
 }
 
 export default routes

@@ -1,12 +1,12 @@
 {
   "name": "topiary-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Development repo for the topiary-io admin UI",
   "main": "server.js",
   "scripts": {
     "dev": "npm run watch & npm run styles & nodemon server.js && fg",
     "build": "browserify -t [ babelify --presets es2015 --plugins [mjsx transform-object-rest-spread] ] src/index.js -o bundle.js",
-    "styles": "stylus -u jeet -w src/styles/main.styl -o styles.css",
+    "styles": "stylus -u jeet -w src/styles/main.styl -o main.css",
     "watch": "watchify -vd -t [ babelify --presets es2015 --plugins [mjsx transform-object-rest-spread] ] -p browserify-hmr src/index.js -o bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "min": "uglifyjs bundle.js --screw-ie8 -c dead_code -o bundle.min.js"

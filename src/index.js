@@ -11,11 +11,11 @@ const store = createStore(combineReducers(reducers))
 // get initial app state, and then render ui
 m.request({
   method: "GET",
-  url: "http://localhost:3000/admin/api/side-bar"
+  url: "http://localhost:3000"+ADMIN_ROOT+"api/side-bar"
 }).then(function (sideBar) {
   store.dispatch(setSideBar(sideBar))
   Malatium
     .init(m, store)
-    .route(document.body, "/admin", routes, "pathname")
+    .route(document.body, ADMIN_ROOT, routes, "pathname")
 })
 

@@ -4,7 +4,7 @@ class Header {
   view () {
     return m("header",
       m("a#admin-home",
-        { href: "/admin", config: m.route },
+        { href: ADMIN_ROOT, config: m.route },
         // TODO : link this text to config value
         "topiary"
       )  
